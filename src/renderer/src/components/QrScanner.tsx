@@ -18,6 +18,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
+    /* @ts-ignore */
 export default function QrScanner({ isOpen, onScan, onError, onClose }) {
   return (
     <React.Fragment>

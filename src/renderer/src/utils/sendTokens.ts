@@ -43,6 +43,8 @@ const sendTokens = async (sa, t, amt, pm = true) => {
     const saAddress = await smartAccount.getAccountAddress();
     console.log('SA Address', saAddress);
 
+    let txHash = null;
+
     if (pm) {
       // ------ 4. Send user operation and get tx hash
       const tx = await smartAccount.sendTransaction(transferTx, {
@@ -55,7 +57,7 @@ const sendTokens = async (sa, t, amt, pm = true) => {
       console.log('transactionHash', transactionHash);
       alert(`Transaction Successful: ${transactionHash}`);
 
-      return transactionHash;
+      txHash = transactionHash;
     } else {
       // ------ 4. Send user operation and get tx hash
       const tx = await smartAccount.sendTransaction(transferTx);
@@ -64,10 +66,13 @@ const sendTokens = async (sa, t, amt, pm = true) => {
       console.log('transactionHash', transactionHash);
       alert(`Transaction Successful: ${transactionHash}`);
 
-      return transactionHash;
+      txHash = transactionHash;
     }
+    return txHash;
   } catch (err) {
     alert(`Transaction Error: ${err}`);
+
+    return null;
   }
 };
 
